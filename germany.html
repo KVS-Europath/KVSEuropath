@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study in Germany</title>
+
+<style>
+body {
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+    text-align:center;
+}
+
+/* Header */
+header {
+    padding:40px;
+}
+header h1 {
+    font-size:40px;
+}
+header p {
+    opacity:0.8;
+}
+
+/* Progress bar */
+.progress {
+    width:80%;
+    height:8px;
+    background:#444;
+    margin:20px auto;
+    border-radius:10px;
+}
+.progress-bar {
+    height:100%;
+    width:33%;
+    background:#00e5ff;
+    border-radius:10px;
+    transition:0.5s;
+}
+
+/* Buttons */
+.btn {
+    padding:12px 25px;
+    margin:10px;
+    border:none;
+    border-radius:30px;
+    background:#00e5ff;
+    color:black;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+.btn:hover {
+    transform:scale(1.1);
+}
+
+/* Cards */
+.card-container {
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+.card {
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    border-radius:15px;
+    padding:20px;
+    margin:15px;
+    width:250px;
+    transition:0.3s;
+}
+.card:hover {
+    transform:translateY(-10px);
+}
+
+.hidden { display:none; }
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Study in Germany 🇩🇪</h1>
+<p>Affordable education • High-quality universities • Global opportunities</p>
+</header>
+
+<div class="progress"><div id="bar" class="progress-bar"></div></div>
+
+<!-- STEP 1 -->
+<div id="step1">
+<h2>Select Program</h2>
+<button class="btn" onclick="nextStep(2)">Bachelors</button>
+<button class="btn" onclick="nextStep(2)">Masters</button>
+</div>
+
+<!-- STEP 2 -->
+<div id="step2" class="hidden">
+<h2>Select University Type</h2>
+<button class="btn" onclick="nextStep(3)">Public (Low Fees)</button>
+<button class="btn" onclick="nextStep(3)">Private</button>
+</div>
+
+<!-- STEP 3 -->
+<div id="step3" class="hidden">
+<h2>Choose Your Package</h2>
+
+<div class="card-container">
+
+<div class="card">
+<h3>Basic</h3>
+<p>✔ Shortlisting</p>
+<p>✔ Applications</p>
+<p>✔ Email Support</p>
+<h4>€299</h4>
+</div>
+
+<div class="card">
+<h3>Standard</h3>
+<p>✔ SOP + CV</p>
+<p>✔ Priority Applications</p>
+<p>✔ Interview Prep</p>
+<h4>€599</h4>
+</div>
+
+<div class="card">
+<h3>Premium</h3>
+<p>✔ Full Admission</p>
+<p>✔ Visa Support</p>
+<p>✔ Accommodation</p>
+<h4>€999</h4>
+</div>
+
+</div>
+</div>
+
+<script>
+function nextStep(step){
+document.getElementById("step"+(step-1)).classList.add("hidden");
+document.getElementById("step"+step).classList.remove("hidden");
+
+let progress = (step-1)*33;
+document.getElementById("bar").style.width = progress + "%";
+}
+</script>
+
+</body>
+</html>
