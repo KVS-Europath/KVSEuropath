@@ -1,59 +1,125 @@
-<div style="max-width:600px;margin:40px auto;padding:25px;background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border-radius:15px;color:white;font-family:Poppins,sans-serif;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KVS Europath Enquiry</title>
 
-<h2 style="text-align:center;">Student Enquiry Form 🎓</h2>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-<form onsubmit="sendData(event)">
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background: linear-gradient(135deg,#0b0f2f,#1c3faa,#3a7bd5);
+    color:white;
+}
 
-    <input type="text" id="name" placeholder="Full Name" required
-    style="width:100%;padding:10px;margin:8px 0;border-radius:10px;border:none;"><br>
+.container{
+    max-width:600px;
+    margin:50px auto;
+    padding:25px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    border-radius:15px;
+}
 
-    <input type="email" id="email" placeholder="Email Address" required
-    style="width:100%;padding:10px;margin:8px 0;border-radius:10px;border:none;"><br>
+h1{
+    text-align:center;
+}
 
-    <input type="tel" id="phone" placeholder="Phone Number (WhatsApp preferred)" required
-    style="width:100%;padding:10px;margin:8px 0;border-radius:10px;border:none;"><br>
+input, select, textarea{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:none;
+    border-radius:10px;
+    font-family:Poppins;
+}
 
-    <select id="country" required
-    style="width:100%;padding:10px;margin:8px 0;border-radius:10px;border:none;">
-        <option value="">Interested Country</option>
-        <option>Germany</option>
-        <option>France</option>
-        <option>Italy</option>
-        <option>Netherlands</option>
-    </select><br>
+button{
+    width:100%;
+    padding:12px;
+    background:#ff9800;
+    border:none;
+    border-radius:25px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-    <select id="level" required
-    style="width:100%;padding:10px;margin:8px 0;border-radius:10px;border:none;">
-        <option value="">Study Level</option>
-        <option>Bachelor’s</option>
-        <option>Master’s</option>
-    </select><br>
+button:hover{
+    transform:scale(1.03);
+}
 
-    <textarea id="message" placeholder="Your Message"
-    style="width:100%;padding:10px;margin:8px 0;border-radius:10px;border:none;height:80px;"></textarea>
+#status{
+    text-align:center;
+    margin-top:10px;
+    font-weight:bold;
+}
+</style>
+</head>
 
-    <button type="submit"
-    style="width:100%;padding:12px;background:#ff9800;border:none;border-radius:25px;font-weight:bold;cursor:pointer;">
-        Submit Enquiry
-    </button>
+<body>
+
+<div class="container">
+
+<h1>KVS Europath 🎓</h1>
+<p style="text-align:center;">Student Enquiry Form</p>
+
+<form id="contact-form">
+
+<input type="text" id="name" placeholder="Full Name" required>
+
+<input type="email" id="email" placeholder="Email Address" required>
+
+<input type="tel" id="phone" placeholder="Phone Number" required>
+
+<select id="country" required>
+    <option value="">Select Country</option>
+    <option>Germany</option>
+    <option>France</option>
+    <option>Italy</option>
+    <option>Netherlands</option>
+</select>
+
+<select id="level" required>
+    <option value="">Select Study Level</option>
+    <option>Bachelor’s</option>
+    <option>Master’s</option>
+</select>
+
+<textarea id="message" placeholder="Your Message"></textarea>
+
+<button type="submit">Submit Enquiry</button>
 
 </form>
 
-<p id="status" style="text-align:center;margin-top:10px;"></p>
+<p id="status"></p>
 
 </div>
 
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
 <script>
-function sendData(event){
-    event.preventDefault();
+emailjs.init("dcLIb5vo3iDxsSKET"); // PUBLIC KEY
 
-    let name = document.getElementById("name").value;
-    let country = document.getElementById("country").value;
+document.getElementById("contact-form").addEventListener("submit", function(e){
+    e.preventDefault();
 
-    document.getElementById("status").innerText =
-    "Thanks " + name + "! We will contact you soon for " + country + " studies 🎓";
+    emailjs.send("service_u2lnug7", "template_syhqwr3", {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        country: document.getElementById("country").value,
+        level: document.getElementById("level").value,
+        message: document.getElementById("message").value
+    });
 
-    // simple demo only (no backend yet)
-    console.log({name,email:document.getElementById("email").value});
-}
+    document.getElementById("status").innerHTML =
+    "✅ Thanks for responding! KVS Europath will contact you soon.";
+});
 </script>
+
+</body>
+</html>
