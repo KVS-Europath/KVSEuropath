@@ -1,0 +1,59 @@
+<div style="max-width:600px;margin:40px auto;padding:25px;background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border-radius:15px;color:white;font-family:Poppins,sans-serif;">
+
+<h2 style="text-align:center;">Student Enquiry Form 🎓</h2>
+
+<form onsubmit="sendData(event)">
+
+    <input type="text" id="name" placeholder="Full Name" required
+    style="width:100%;padding:10px;margin:8px 0;border-radius:10px;border:none;"><br>
+
+    <input type="email" id="email" placeholder="Email Address" required
+    style="width:100%;padding:10px;margin:8px 0;border-radius:10px;border:none;"><br>
+
+    <input type="tel" id="phone" placeholder="Phone Number (WhatsApp preferred)" required
+    style="width:100%;padding:10px;margin:8px 0;border-radius:10px;border:none;"><br>
+
+    <select id="country" required
+    style="width:100%;padding:10px;margin:8px 0;border-radius:10px;border:none;">
+        <option value="">Interested Country</option>
+        <option>Germany</option>
+        <option>France</option>
+        <option>Italy</option>
+        <option>Netherlands</option>
+    </select><br>
+
+    <select id="level" required
+    style="width:100%;padding:10px;margin:8px 0;border-radius:10px;border:none;">
+        <option value="">Study Level</option>
+        <option>Bachelor’s</option>
+        <option>Master’s</option>
+    </select><br>
+
+    <textarea id="message" placeholder="Your Message"
+    style="width:100%;padding:10px;margin:8px 0;border-radius:10px;border:none;height:80px;"></textarea>
+
+    <button type="submit"
+    style="width:100%;padding:12px;background:#ff9800;border:none;border-radius:25px;font-weight:bold;cursor:pointer;">
+        Submit Enquiry
+    </button>
+
+</form>
+
+<p id="status" style="text-align:center;margin-top:10px;"></p>
+
+</div>
+
+<script>
+function sendData(event){
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let country = document.getElementById("country").value;
+
+    document.getElementById("status").innerText =
+    "Thanks " + name + "! We will contact you soon for " + country + " studies 🎓";
+
+    // simple demo only (no backend yet)
+    console.log({name,email:document.getElementById("email").value});
+}
+</script>
