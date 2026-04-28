@@ -13,88 +13,69 @@ body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #0b0f2f, #1c3faa, #3a7bd5);
     color: white;
-}
-
-/* Header */
-header {
     text-align: center;
-    padding: 50px 20px;
-}
-header h1 {
-    font-size: 42px;
-    margin-bottom: 10px;
-}
-header p {
-    font-size: 18px;
-    opacity: 0.85;
 }
 
-/* Section */
+header {
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 42px;
+}
+
 .container {
     width: 90%;
-    max-width: 1100px;
+    max-width: 1000px;
     margin: auto;
-    padding-bottom: 60px;
+}
+
+.btn {
+    padding: 12px 22px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background: #ff9800;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
 }
 
 .card {
     background: rgba(255,255,255,0.12);
     backdrop-filter: blur(10px);
-    border-radius: 18px;
-    padding: 25px;
-    margin: 20px 0;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-
-/* Grid for packages */
-.packages {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.package {
-    flex: 1;
-    min-width: 280px;
-    background: white;
-    color: black;
     border-radius: 15px;
     padding: 20px;
-    transition: 0.3s;
+    margin-top: 20px;
 }
 
-.package:hover {
-    transform: translateY(-8px);
-}
-
-.package h2 {
-    color: #1c3faa;
+.package-box {
+    background: white;
+    color: black;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 15px;
+    display: inline-block;
+    width: 260px;
 }
 
 .price {
-    font-size: 20px;
-    font-weight: bold;
     color: #e91e63;
+    font-weight: bold;
     margin-top: 10px;
 }
 
-.note {
-    text-align: center;
+.hidden {
+    display: none;
+}
+
+.step-title {
     margin-top: 20px;
-    font-weight: 600;
-    color: #ffeb3b;
-}
-
-/* Button */
-.btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background: #ff9800;
-    color: white;
-    border-radius: 25px;
-    text-decoration: none;
 }
 </style>
 </head>
@@ -103,75 +84,98 @@ header p {
 
 <header>
     <h1>Study in Germany 🇩🇪</h1>
-    <p>Your gateway to world-class education, research & career opportunities</p>
+    <p>Choose your path to higher education</p>
 </header>
 
 <div class="container">
 
-    <!-- Info Section -->
-    <div class="card">
-        <h2>Why Study in Germany?</h2>
-        <p>
-            Germany is one of the most preferred study destinations for international students.
-            It offers <b>high-quality education</b> with globally recognized degrees.
-        </p>
-        <p>
-            Students can choose between <b>Public Universities (low or no tuition fees)</b> and 
-            <b>Private Universities</b> based on their preference and budget.
-        </p>
-        <p>
-            Germany offers both <b>Bachelor’s and Master’s programs</b> in English and German-taught courses
-            with strong industry exposure and research opportunities.
-        </p>
+    <!-- STEP 1 -->
+    <div id="step1">
+        <h2>Select Program</h2>
+        <button class="btn" onclick="showType()">Bachelor’s</button>
+        <button class="btn" onclick="showType()">Master’s</button>
     </div>
 
-    <!-- Packages -->
-    <div class="card">
-        <h2>Our Consultancy Packages</h2>
+    <!-- STEP 2 -->
+    <div id="step2" class="hidden">
+        <h2>Select University Type</h2>
+        <button class="btn" onclick="showPublic()">Public Universities</button>
+        <button class="btn" onclick="showPrivate()">Private Universities</button>
+    </div>
 
-        <div class="packages">
+    <!-- PUBLIC SECTION -->
+    <div id="public" class="hidden card">
+        <h2>Public Universities 🇩🇪</h2>
+        <p>Germany offers world-class education at very low or zero tuition fees in public universities.</p>
+        <p>You get full consultancy support for admission process.</p>
 
-            <!-- BASIC -->
-            <div class="package">
-                <h2>Basic</h2>
-                <p>✔ APS Guidance</p>
-                <p>✔ University Shortlisting</p>
-                <p>✔ Apply up to 5 Universities</p>
-                <p>✔ Visa Guidance</p>
-                <p>✔ Blocked Account Support</p>
-                <p>✔ Loan Assistance</p>
-                <div class="price">₹44,999/-</div>
-            </div>
-
-            <!-- STANDARD -->
-            <div class="package">
-                <h2>Standard</h2>
-                <p>✔ Everything in Basic</p>
-                <p>✔ Resume Tailoring</p>
-                <p>✔ SOP Writing Support</p>
-                <p>✔ IELTS & German A1 Support</p>
-                <p>✔ Full Documentation Assistance</p>
-                <div class="price">₹54,999/-</div>
-            </div>
-
-            <!-- PREMIUM -->
-            <div class="package">
-                <h2>Premium</h2>
-                <p>✔ Everything in Basic & Standard</p>
-                <p>✔ Pre & Post Arrival Support</p>
-                <p>✔ Accommodation Assistance</p>
-                <p>✔ Post Arrival Guidance in Germany</p>
-                <div class="price">₹84,999/-</div>
-            </div>
-
+        <div class="package-box">
+            <h3>Basic</h3>
+            <p>APS Guidance</p>
+            <p>University Shortlisting</p>
+            <p>Apply up to 5 Universities</p>
+            <p>Visa Guidance</p>
+            <p>Blocked Account & Loan Assistance</p>
+            <div class="price">₹44,999/-</div>
         </div>
 
-        <p class="note">
-            💡 Note: Payment is to be made only after successful admission.
-        </p>
+        <div class="package-box">
+            <h3>Standard</h3>
+            <p>Everything in Basic</p>
+            <p>Resume Tailoring</p>
+            <p>SOP Writing</p>
+            <p>IELTS + German A1 Support</p>
+            <p>Full Documentation</p>
+            <div class="price">₹54,999/-</div>
+        </div>
+
+        <div class="package-box">
+            <h3>Premium</h3>
+            <p>Everything in Standard</p>
+            <p>Pre & Post Arrival Support</p>
+            <p>Accommodation Help</p>
+            <p>Germany Arrival Guidance</p>
+            <div class="price">₹84,999/-</div>
+        </div>
+    </div>
+
+    <!-- PRIVATE SECTION -->
+    <div id="private" class="hidden card">
+        <h2>Private Universities 🇩🇪</h2>
+        <p>Private universities in Germany offer faster admission but require higher tuition fees.</p>
+
+        <h3>Free Step-by-Step Process (Guidance Included)</h3>
+        <ol style="text-align:left; display:inline-block;">
+            <li>Profile evaluation</li>
+            <li>University selection</li>
+            <li>Application submission</li>
+            <li>Offer letter guidance</li>
+            <li>Visa file preparation</li>
+            <li>Blocked account setup</li>
+            <li>Travel & arrival guidance</li>
+        </ol>
+
+        <p><b>Note:</b> Consultancy guidance is included in all packages. Payment only after successful admission.</p>
     </div>
 
 </div>
+
+<script>
+function showType(){
+    document.getElementById("step1").classList.add("hidden");
+    document.getElementById("step2").classList.remove("hidden");
+}
+
+function showPublic(){
+    document.getElementById("step2").classList.add("hidden");
+    document.getElementById("public").classList.remove("hidden");
+}
+
+function showPrivate(){
+    document.getElementById("step2").classList.add("hidden");
+    document.getElementById("private").classList.remove("hidden");
+}
+</script>
 
 </body>
 </html>
