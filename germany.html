@@ -46,6 +46,12 @@ h1 {
     transform: scale(1.05);
 }
 
+.back-btn {
+    margin-top: 20px;
+    background: #ffffff;
+    color: #0b0f2f;
+}
+
 .card {
     background: rgba(255,255,255,0.12);
     backdrop-filter: blur(10px);
@@ -77,6 +83,22 @@ h1 {
 .step-title {
     margin-top: 20px;
 }
+
+/* Animation */
+.fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 </style>
 </head>
 
@@ -84,7 +106,7 @@ h1 {
 
 <header>
     <h1>Study in Germany 🇩🇪</h1>
-    <p>Choose your path to higher education</p>
+    <p>Choose your path to higher education or career</p>
 </header>
 
 <div class="container">
@@ -94,6 +116,7 @@ h1 {
         <h2>Select Program</h2>
         <button class="btn" onclick="showType()">Bachelor’s</button>
         <button class="btn" onclick="showType()">Master’s</button>
+        <button class="btn" onclick="showOpportunity()">Opportunity Card</button>
     </div>
 
     <!-- STEP 2 -->
@@ -101,13 +124,14 @@ h1 {
         <h2>Select University Type</h2>
         <button class="btn" onclick="showPublic()">Public Universities</button>
         <button class="btn" onclick="showPrivate()">Private Universities</button>
+        <br>
+        <button class="btn back-btn" onclick="goBackHome()">⬅ Back</button>
     </div>
 
-    <!-- PUBLIC SECTION -->
+    <!-- PUBLIC -->
     <div id="public" class="hidden card">
         <h2>Public Universities 🇩🇪</h2>
         <p>Germany offers world-class education at very low or zero tuition fees in public universities.</p>
-        <p>You get full consultancy support for admission process.</p>
 
         <div class="package-box">
             <h3>Basic</h3>
@@ -137,25 +161,66 @@ h1 {
             <p>Germany Arrival Guidance</p>
             <div class="price">₹54,999/-</div>
         </div>
+
+        <p><b>Note:</b> Consultancy guidance is included. Payment after admission.</p>
+
+        <button class="btn back-btn" onclick="goBackHome()">⬅ Back</button>
     </div>
 
-    <!-- PRIVATE SECTION -->
+    <!-- PRIVATE -->
     <div id="private" class="hidden card">
         <h2>Private Universities 🇩🇪</h2>
-        <p>Private universities in Germany offer faster admission but require higher tuition fees.</p>
+        <p>Private universities in Germany offer faster admission but require tuition fees.</p>
 
         <h3>Free Step-by-Step Process (Guidance Included)</h3>
         <ol style="text-align:left; display:inline-block;">
             <li>Profile evaluation</li>
             <li>University selection</li>
             <li>Application submission</li>
-            <li>Offer letter guidance</li>
+            <li>Loan Assistance</li>
             <li>Visa file preparation</li>
             <li>Blocked account setup</li>
             <li>Travel & arrival guidance</li>
         </ol>
 
-        <p><b>Note:</b> Consultancy guidance is included in all packages. Payment only after successful admission.</p>
+        <button class="btn back-btn" onclick="goBackHome()">⬅ Back</button>
+    </div>
+
+    <!-- OPPORTUNITY CARD -->
+    <div id="opportunity" class="hidden card">
+        <h2>Opportunity Card (Chancenkarte) 🇩🇪</h2>
+        <p>Come to Germany without a job offer and search for jobs easily.</p>
+
+        <h3 class="step-title">Key Benefits</h3>
+        <ul style="text-align:left; display:inline-block;">
+            <li>Stay up to 12 months</li>
+            <li>Work part-time (20 hrs/week)</li>
+            <li>No job offer required</li>
+            <li>Pathway to full-time job</li>
+        </ul>
+
+        <h3 class="step-title">Eligibility</h3>
+        <ul style="text-align:left; display:inline-block;">
+            <li>Degree or 2+ years experience</li>
+            <li>German (A1) or English (B2)</li>
+            <li>Points system qualification (Minimum 6 Points)</li>
+        </ul>
+
+        <h3 class="step-title">Process</h3>
+        <ol style="text-align:left; display:inline-block;">
+            <li>Profile evaluation</li>
+            <li>Points calculation</li>
+            <li>Document preparation</li>
+            <li>Application submission</li>
+            <li>Visa process</li>
+            <li>Blocked account setup</li>
+            <li>Travel to Germany</li>
+            <li>Job search support</li>
+        </ol>
+
+        <p><b>Powered by KVS Europath</b> | connect@kvseuropath.com</p>
+
+        <button class="btn back-btn" onclick="goBackHome()">⬅ Back</button>
     </div>
 
 </div>
@@ -163,17 +228,39 @@ h1 {
 <script>
 function showType(){
     document.getElementById("step1").classList.add("hidden");
-    document.getElementById("step2").classList.remove("hidden");
+    let step2 = document.getElementById("step2");
+    step2.classList.remove("hidden");
+    step2.classList.add("fade-in");
 }
 
 function showPublic(){
     document.getElementById("step2").classList.add("hidden");
-    document.getElementById("public").classList.remove("hidden");
+    let el = document.getElementById("public");
+    el.classList.remove("hidden");
+    el.classList.add("fade-in");
 }
 
 function showPrivate(){
     document.getElementById("step2").classList.add("hidden");
-    document.getElementById("private").classList.remove("hidden");
+    let el = document.getElementById("private");
+    el.classList.remove("hidden");
+    el.classList.add("fade-in");
+}
+
+function showOpportunity(){
+    document.getElementById("step1").classList.add("hidden");
+    let el = document.getElementById("opportunity");
+    el.classList.remove("hidden");
+    el.classList.add("fade-in");
+}
+
+function goBackHome(){
+    document.getElementById("step1").classList.remove("hidden");
+
+    document.getElementById("step2").classList.add("hidden");
+    document.getElementById("public").classList.add("hidden");
+    document.getElementById("private").classList.add("hidden");
+    document.getElementById("opportunity").classList.add("hidden");
 }
 </script>
 
